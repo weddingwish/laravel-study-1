@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('products', 'ProductController@index');
+Route::get('carts', 'CartController@index');
+Route::resource('ajax/products', 'Ajax\ProductController')
+    ->only(['index']);
+Route::resource('ajax/carts', 'Ajax\CartController')
+    ->only(['index', 'store', 'update', 'destroy']);
